@@ -1,0 +1,5 @@
+IP: 51.250.111.159
+name_taski: https://aiukan.dnss.net
+name_kittygram: https://aiukan.dnss.net
+login: admin
+password: admin
