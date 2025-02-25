@@ -26,7 +26,7 @@ server {
 }
 
 server {
-    server_name 51.250.111.159 aiukan.ddns.net;
+    server_name 51.250.111.159 aiukan2.work.gd;
 
     location /api/ {
         # Эта команда определяет, куда нужно перенаправить запрос.
@@ -38,7 +38,7 @@ server {
     }
 
     location /media/ {
-        alias /media/;
+        alias media/;
     }
 
     location / {
@@ -48,6 +48,14 @@ server {
     }
 
     
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/aiukan2.work.gd/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/aiukan2.work.gd/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
 }
 
 
@@ -60,6 +68,20 @@ server {
 
     listen 80;
     server_name 51.250.111.159 aiukan.ddns.net;
+    return 404; # managed by Certbot
+
+
+}
+
+
+server {
+    if ($host = aiukan2.work.gd) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    server_name 51.250.111.159 aiukan2.work.gd;
+    listen 80;
     return 404; # managed by Certbot
 
 
